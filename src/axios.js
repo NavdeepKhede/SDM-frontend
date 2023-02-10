@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = "https://necthub-backend.onrender.com"
+const BASE_URL = "https://sdm-backend.onrender.com"
 
 const axiosInstance = axios.create({ baseURL: BASE_URL });
 
