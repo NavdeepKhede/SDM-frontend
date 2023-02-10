@@ -23,7 +23,7 @@ const Transition = React.forwardRef(function Transition(props, ref) {
 const ShowTable = () => {
   const dispatch = useDispatch();
 
-  const [dataSource, setDataSource] = useState([]);
+  const [dataSource, setDataSource] = useState(null);
   const [open, setOpen] = useState(false);
   const [stuID, setStuID] = useState(null);
 
@@ -101,20 +101,22 @@ const ShowTable = () => {
     },
   ];
 
+  // console.log(dataSource)
+
   useEffect(() => {
     return async () => {
       await axios
         .get("/student") // Handle the response from backend here
         .then((res) => {
           setDataSource(res.data.students);
-          console.log(setDataSource)
+          console.log(dataSource)
         })
         // Catch errors if any
         .catch((error) => {
           console.log(error);
         });
     };
-  }, []);
+  }, [dataSource]);
 
   return (
     <>
@@ -124,12 +126,12 @@ const ShowTable = () => {
         }}
       >
         <Header title="Manage Students" backBtn={false} />
-        <Table
+        {dataSource && <Table
           sticky
           dataSource={dataSource}
           columns={columns}
           srcoll={{ y: 400 }}
-        />
+        />}
       </Stack>
       <Dialog
         fullWidth
