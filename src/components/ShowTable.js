@@ -107,6 +107,7 @@ const ShowTable = () => {
         .get("/student") // Handle the response from backend here
         .then((res) => {
           setDataSource(res.data.students);
+          console.log(setDataSource)
         })
         // Catch errors if any
         .catch((error) => {
